@@ -28,6 +28,8 @@ Example Playbook
 ----------------
 
 Here is an example playbook included in `tests` dir. After applying this role, open a new terminal session to begin with troubleshooting and `cd begin_task` from the home dir of your non-root user.
+
+Once you're there, open `README.txt` file to get your instructions.
 ```
 ---
 - hosts: localhost
