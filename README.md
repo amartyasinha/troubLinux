@@ -27,7 +27,7 @@ No dependencies as of now.
 Example Playbook
 ----------------
 
-Here is an example playbook included in `tests` dir. After applying this role, open a new terminal session to begin with troubleshooting.
+Here is an example playbook included in `tests` dir. After applying this role, open a new terminal session to begin with troubleshooting and `cd begin_task` from the home dir of your non-root user.
 ```
 ---
 - hosts: localhost
