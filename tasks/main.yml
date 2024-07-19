@@ -1,2 +1,38 @@
 ---
 # tasks file for troubLinux
+
+- name: Create starting dir
+  ansible.builtin.file:
+    path: "{{ task_dir }}"
+    state: directory
+    mode: '0755'
+
+- name: Create WRITEME.txt file
+  ansible.builtin.file:
+    path: "{{ writeme_file_path }}"
+    state: touch
+    mode: '0644'
+
+- name: Templating README.txt file
+  ansible.builtin.template:
+    src: "{{ readme_file_name }}.j2"
+    dest: "{{ readme_file_path }}"
+    mode: '0644'
+
+- name: Change task dir ownership
+  become: true
+  become_user: root
+  ansible.builtin.file:
+    path: "{{ task_dir }}"
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Break sudo
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: sudo
+    dest: /usr/sbin/sudo
+    mode: '555'
+    owner: root
