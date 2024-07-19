@@ -1,4 +1,4 @@
-trouLinux
+troubLinux
 =========
 
 A fun Ansible role to setup a Linux troubleshooting environment. Simply apply the role on a test Linux setup and enjoy troubleshooting.
