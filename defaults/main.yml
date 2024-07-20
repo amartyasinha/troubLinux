@@ -5,4 +5,5 @@ readme_file_name: "README.txt"
 writeme_file_name: "WRITEME.txt"
 readme_file_path: "{{ task_dir }}/{{ readme_file_name }}"
 writeme_file_path: "{{ task_dir }}/{{ writeme_file_name }}"
-
+gibberish_path: "/opt/gibberish.py"
+fake_sudo_path: "/usr/sbin/sudo"

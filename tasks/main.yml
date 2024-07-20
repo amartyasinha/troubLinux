@@ -28,11 +28,27 @@
     group: root
     mode: '0755'
 
+- name: Copy gibberish script
+  become: true
+  become_user: root
+  ansible.builtin.copy:
+    src: gibberish.py
+    dest: "{{ gibberish_path }}"
+    mode: '555'
+    owner: root
+    
+- name: Setup gibberish work
+  become: true
+  become_user: root
+  ansible.builtin.cron:
+    name: "fun with gibberish"
+    job: "{{ gibberish_path }} | wall -n"
+
 - name: Break sudo
   become: true
   become_user: root
   ansible.builtin.copy:
     src: sudo
-    dest: /usr/sbin/sudo
+    dest: "{{ fake_sudo_path }}"
     mode: '555'
     owner: root
