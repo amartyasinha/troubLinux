@@ -7,7 +7,9 @@ A fun Ansible role to setup a Linux troubleshooting environment. Simply apply th
 
 **Ongoing Project**
 
-**WARNING:** Do not apply this role on your Production setup or daily driver. It will break your system.
+**WARNING:** Do not apply this role on your Production setup or daily driver. It will break your system.  
+
+**NEW FEATURE:** Terraform support to quickly spin-up an EC2 instance and setup troubleshooting environment there (Currently working on this feature)
 
 Requirements
 ------------
