@@ -11,3 +11,7 @@ variable "instance_config" {
 variable "ami_filter" {
     description = "it filter out the required AMI"
 }
+
+variable "ssh_user" {
+    description = "non-root user with sudo previlege"
+}

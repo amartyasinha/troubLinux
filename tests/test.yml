@@ -1,5 +1,6 @@
 ---
-- hosts: localhost
+- name: Apply troubLinux role
+  hosts: all
   remote_user: ubuntu
   roles:
-    - ../../troubLinux
+    - troubLinux

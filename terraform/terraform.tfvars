@@ -1,8 +1,9 @@
 aws_credentials      = "$HOME/.aws/credentials"
 region               = "us-east-1"
 
+ssh_user = "ubuntu"
+
 instance_config = {
-  count            = 1
   instance_type    = "t2.micro"
   key_name         = "my-key" # Replace with your key name that exists in AWS
   root_volume_size = 8
