@@ -56,7 +56,7 @@ terraform plan
 terraform apply --auto-approve
 ```
 
-That's all, terraform will create an EC2 instance and automatically run the ansible role to setup troubleshooting env.
+That's all, terraform will create an EC2 instance and automatically run the ansible role to setup troubleshooting env. Now, you can ssh to your EC2 instance using your private key and `cd begin_task` and follow the `README.txt` document for instructions.
 
 **NOTE:** Make sure you create the key in the correct region. Otherwise, terraform will not be able to find the key.
 
