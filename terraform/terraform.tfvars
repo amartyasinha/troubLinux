@@ -1,5 +1,5 @@
-aws_credentials      = "$HOME/.aws/credentials"
-region               = "us-east-1"
+aws_credentials = "$HOME/.aws/credentials"
+region          = "us-east-1"
 
 ssh_user = "ubuntu"
 

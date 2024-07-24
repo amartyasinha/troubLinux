@@ -3,10 +3,10 @@ locals {
 
 }
 resource "aws_default_subnet" "default_subnet" {
-    availability_zone = "${var.region}a"
+  availability_zone = "${var.region}a"
 
-    tags = {
-        Name = "Default subnet for this project"
+  tags = {
+    Name = "Default subnet for this project"
   }
 }
 
@@ -61,36 +61,36 @@ resource "aws_security_group" "troubLinux_sg" {
 }
 
 resource "aws_instance" "troubLinux_instance" {
-    ami = data.aws_ami.ubuntu-ami-id.id
-    instance_type = var.instance_config["instance_type"]
-    key_name = var.instance_config["key_name"]
-    subnet_id = aws_default_subnet.default_subnet.id
-    security_groups = [ aws_security_group.troubLinux_sg.id ]
+  ami             = data.aws_ami.ubuntu-ami-id.id
+  instance_type   = var.instance_config["instance_type"]
+  key_name        = var.instance_config["key_name"]
+  subnet_id       = aws_default_subnet.default_subnet.id
+  security_groups = [aws_security_group.troubLinux_sg.id]
 
-    root_block_device {
-        encrypted             = false
-        delete_on_termination = true
-        volume_size           = var.instance_config["root_volume_size"]
-        volume_type           = var.instance_config["root_volume_type"]
+  root_block_device {
+    encrypted             = false
+    delete_on_termination = true
+    volume_size           = var.instance_config["root_volume_size"]
+    volume_type           = var.instance_config["root_volume_type"]
   }
 
-    # Ansible Integration borrowed from https://github.com/antonputra/tutorials/blob/main/lessons/014/main.tf#L47
-    provisioner "remote-exec" {
-        inline = ["echo 'Wait until SSH is ready'"]
+  # Ansible Integration borrowed from https://github.com/antonputra/tutorials/blob/main/lessons/014/main.tf#L47
+  provisioner "remote-exec" {
+    inline = ["echo 'Wait until SSH is ready'"]
 
-        connection {
-            type        = "ssh"
-            user        = var.ssh_user
-            private_key = file(local.private_key_path)
-            host        = aws_instance.troubLinux_instance.public_ip
-        }
+    connection {
+      type        = "ssh"
+      user        = var.ssh_user
+      private_key = file(local.private_key_path)
+      host        = aws_instance.troubLinux_instance.public_ip
     }
+  }
   provisioner "local-exec" {
-    command = "ansible-playbook  -i ${aws_instance.troubLinux_instance.public_ip}, --private-key ${local.private_key_path} test.yml"
+    command     = "ansible-playbook  -i ${aws_instance.troubLinux_instance.public_ip}, --private-key ${local.private_key_path} test.yml"
     working_dir = "${path.module}/../tests"
   }
   tags = {
     Name        = "troubLinux"
     Environment = "test"
-  }   
+  }
 }
