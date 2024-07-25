@@ -1,7 +1,7 @@
 locals {
   private_key_path = "~/keys/${var.instance_config["key_name"]}.pem"
-
 }
+
 resource "aws_default_subnet" "default_subnet" {
   availability_zone = "${var.region}a"
 
