@@ -1,2 +1,7 @@
 ---
 # handlers file for troubLinux
+- name: restart apache2
+  ansible.builtin.service:
+    name: apache2
+    state: restarted
+  ignore_errors: true

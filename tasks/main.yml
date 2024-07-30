@@ -44,6 +44,23 @@
     name: "fun with gibberish"
     job: "{{ gibberish_path }} | wall -n"
 
+- name: Install apache2
+  become: true
+  become_user: root
+  ansible.builtin.apt:
+    name: "apache2"
+    state: present
+    update_cache: true
+
+- name: Break apache2
+  become: true
+  become_user: root
+  ansible.builtin.lineinfile:
+    path: /etc/apache2/ports.conf
+    regexp: 'Listen 80'
+    line: 'Listen 8O'
+  notify: restart apache2
+
 - name: Break sudo
   become: true
   become_user: root
